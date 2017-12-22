@@ -1,4 +1,4 @@
-package com.asetecit.controlplustmtest;
+package com.asetecit.controlplusmtest;
 
 public class App {
    
