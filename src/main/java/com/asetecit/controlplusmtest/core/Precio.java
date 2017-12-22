@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 
 public class Precio implements Serializable {
 
+	public static String NORMAL = "Normal";
+
 	private static final long serialVersionUID = 1L;
 
 	private int codigo;
@@ -25,8 +27,8 @@ public class Precio implements Serializable {
 
 	public static class Build {
 
-		private String nombre="";
-		private BigDecimal monto=new BigDecimal(0);
+		private String nombre = NORMAL;
+		private BigDecimal monto = new BigDecimal(0);
 
 		public Build withNombre(String nombre) {
 			this.nombre = nombre;
