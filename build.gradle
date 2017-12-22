@@ -1,0 +1,15 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+	compile 'org.springframework:spring-context:5.0.2.RELEASE'
+}
+
+
+mainClassName = 'com.asetecit.controlplusmtest.App'
+
