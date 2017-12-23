@@ -31,12 +31,12 @@ public class Precio implements Serializable {
 		private BigDecimal monto = new BigDecimal(0);
 
 		public Build withNombre(String nombre) {
-			this.nombre = nombre;
+			this.nombre = nombre == null || nombre.trim().isEmpty() ? NORMAL : nombre;
 			return this;
 		}
 
 		public Build withMonto(BigDecimal monto) {
-			this.monto = monto;
+			this.monto = monto.signum() == -1 ? new BigDecimal(0) : monto;
 			return this;
 		}
 
