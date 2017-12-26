@@ -16,7 +16,7 @@ public class Categoria implements Serializable {
 	}
 
 	public Categoria(String nombre) {
-		this.nombre = nombre;
+		this.nombre = nombre == null || nombre.trim().isEmpty() ? GENERAL : nombre;
 	}
 
 	public int getCodigo() {
