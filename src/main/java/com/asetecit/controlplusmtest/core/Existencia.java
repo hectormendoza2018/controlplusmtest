@@ -28,12 +28,15 @@ public class Existencia implements Serializable {
 		private int unidades;
 
 		public Build withProducto(Producto producto) {
+			if (producto == null) {
+				throw new RuntimeException("El producto no es valido.");
+			}
 			this.producto = producto;
 			return this;
 		}
 
 		public Build withUnidades(int unidades) {
-			this.unidades = unidades;
+			this.unidades = unidades < 0 ? 0 : unidades;
 			return this;
 		}
 
