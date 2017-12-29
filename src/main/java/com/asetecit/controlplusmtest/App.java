@@ -1,8 +1,45 @@
 package com.asetecit.controlplusmtest;
 
-public class App {
-   
-    public static void main(String[] args) {
-       
-    }
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class App extends Application {
+
+	private ConfigurableApplicationContext ctx;
+	private Parent root;
+
+	@Override
+	public void init() throws Exception {
+		ctx = new AnnotationConfigApplicationContext("com.asetecit.controlplusmtest");
+
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/root.fxml"));
+		fxmlLoader.setControllerFactory(ctx::getBean);
+		root = fxmlLoader.load();
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+
+		primaryStage.setTitle("ControlPlus M Test");
+		Scene scene = new Scene(root, 800, 600);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+
+	@Override
+	public void stop() throws Exception {
+		if (ctx != null) {
+			ctx.close();
+		}
+	}
+
+	public static void main(String[] args) {
+		launch(App.class, args);
+	}
 }
