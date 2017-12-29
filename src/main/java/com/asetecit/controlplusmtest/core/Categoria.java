@@ -30,7 +30,11 @@ public class Categoria implements Serializable {
 	}
 
 	public Categoria(String nombre) {
-		this.nombre = nombre == null || nombre.trim().isEmpty() ? GENERAL : nombre;
+		this.nombre = validateName(nombre);
+	}
+
+	private String validateName(String nombre) {
+		return nombre == null || nombre.trim().isEmpty() ? GENERAL : nombre;
 	}
 
 	public int getId() {
@@ -41,4 +45,12 @@ public class Categoria implements Serializable {
 		return nombre;
 	}
 
+	public void setNombre(String nombre) {
+		this.nombre = validateName(nombre);
+	}
+
+	@Override
+	public String toString() {
+		return "Categoria [id=" + id + ", nombre=" + nombre + "]";
+	}
 }

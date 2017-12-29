@@ -36,4 +36,15 @@ public class CategoriaTest {
 
 		Assert.assertEquals(Categoria.GENERAL, sut.getNombre());
 	}
+
+	@Test
+	public void setCategoriaIfNull() {
+
+		Categoria sut = new Categoria();
+
+		sut.setNombre(null);
+
+		Assert.assertEquals(Categoria.GENERAL, sut.getNombre());
+	}
+
 }
