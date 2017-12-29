@@ -9,7 +9,7 @@ import com.asetecit.controlplusmtest.core.Categoria;
 
 public class CategoriaRegistro implements CategoriaRepository {
 
-	private static EntityManager em;
+	private EntityManager em;
 
 	public CategoriaRegistro(EntityManager em) {
 		this.em = em;
