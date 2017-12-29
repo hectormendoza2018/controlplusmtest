@@ -63,4 +63,11 @@ public class SucursalTest {
 		new Sucursal.Build().withTelefono("      ").build();
 
 	}
+
+	@Test(expected = RuntimeException.class)
+	public void setSucursalIfNull() {
+
+		Sucursal sut = new Sucursal.Build().build();
+		sut.setNombre(null);
+	}
 }
