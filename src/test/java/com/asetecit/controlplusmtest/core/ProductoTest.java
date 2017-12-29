@@ -1,6 +1,6 @@
 package com.asetecit.controlplusmtest.core;
 
-import java.util.Collections;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -48,12 +48,12 @@ public class ProductoTest {
 	}
 
 	@Test(expected = RuntimeException.class)
-	public void preciosIfEmpty() {
-		new Producto.Build().withPrecios(Collections.emptySet()).build();
+	public void precioIfNull() {
+		new Producto.Build().withPrecio(null).build();
 	}
 
 	@Test(expected = RuntimeException.class)
-	public void preciosIfNull() {
-		new Producto.Build().withPrecios(null).build();
+	public void precioNotZero() {
+		new Producto.Build().withPrecio(new BigDecimal(0)).build();
 	}
 }

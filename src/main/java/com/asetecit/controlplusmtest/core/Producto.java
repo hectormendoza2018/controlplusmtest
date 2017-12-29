@@ -1,9 +1,7 @@
 package com.asetecit.controlplusmtest.core;
 
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.math.BigDecimal;
 
 public class Producto implements Serializable {
 
@@ -13,7 +11,7 @@ public class Producto implements Serializable {
 	private String cup;
 	private String nombre;
 	private Categoria categoria;
-	private Set<Precio> precios;
+	private BigDecimal precio;
 
 	public int getCodigo() {
 		return codigo;
@@ -31,8 +29,8 @@ public class Producto implements Serializable {
 		return categoria;
 	}
 
-	public Set<Precio> getPrecios() {
-		return precios;
+	public BigDecimal getPrecio() {
+		return precio;
 	}
 
 	public static class Build {
@@ -40,11 +38,7 @@ public class Producto implements Serializable {
 		private String cup = "";
 		private String nombre = "";
 		private Categoria categoria;
-		private Set<Precio> precios;
-
-		public Build() {
-			this.precios = new HashSet<>();
-		}
+		private BigDecimal precio;
 
 		public Build withCup(String cup) {
 			if ((cup == null) || cup.trim().isEmpty()) {
@@ -70,11 +64,12 @@ public class Producto implements Serializable {
 			return this;
 		}
 
-		public Build withPrecios(Set<Precio> precios) {
-			if ((precios == null) || precios.isEmpty()) {
+		public Build withPrecio(BigDecimal precio) {
+
+			if ((precio == null) || (precio.signum() == 0)) {
 				throw new RuntimeException("el precio ingresado no es válido");
 			}
-			this.precios = precios;
+			this.precio = precio;
 			return this;
 		}
 
@@ -86,8 +81,8 @@ public class Producto implements Serializable {
 	private Producto(Build b) {
 		this.cup = b.cup;
 		this.nombre = b.nombre;
-		this.categoria = b.categoria == null ? new Categoria() : b.categoria;
-		this.precios = b.precios == null ? Collections.emptySet() : b.precios;
+		this.categoria = b.categoria;
+		this.precio = b.precio;
 	}
 
 }

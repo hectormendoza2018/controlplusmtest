@@ -10,6 +10,10 @@ dependencies {
 	testCompile 'junit:junit:4.12'
 	
 	compile 'org.springframework:spring-context:5.0.2.RELEASE'
+	compile 'org.hibernate:hibernate-core:5.2.12.Final'
+  	compile 'org.hibernate:hibernate-entitymanager:5.2.12.Final'
+  	compile 'com.microsoft.sqlserver:mssql-jdbc:6.2.2.jre8'
+  	
 }
 
 
