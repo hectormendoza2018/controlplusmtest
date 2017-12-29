@@ -2,21 +2,49 @@ package com.asetecit.controlplusmtest.core;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "sucursal")
 public class Sucursal implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private int codigo;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private int id;
+
+	@Column(name = "nombre")
 	private String nombre;
+
+	@Column(name = "direccion")
 	private String direccion;
+
+	@Column(name = "telefono")
 	private String telefono;
 
-	public int getCodigo() {
-		return codigo;
+	private Sucursal() {
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public String getNombre() {
 		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		if ((nombre == null) || nombre.trim().isEmpty()) {
+			throw new RuntimeException("El nombre no es válido.");
+		}
+		this.nombre = nombre;
 	}
 
 	public String getDireccion() {
