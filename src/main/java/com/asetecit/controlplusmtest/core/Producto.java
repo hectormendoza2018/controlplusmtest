@@ -3,18 +3,42 @@ package com.asetecit.controlplusmtest.core;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "producto")
 public class Producto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private int codigo;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "id")
+	private int id;
+
+	@Column(name = "cup")
 	private String cup;
+
+	@Column(name = "nombre")
 	private String nombre;
+
+	@OneToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "CategoriaId")
 	private Categoria categoria;
+
+	@Column(name = "precio")
 	private BigDecimal precio;
 
-	public int getCodigo() {
-		return codigo;
+	public int getId() {
+		return id;
 	}
 
 	public String getCup() {
