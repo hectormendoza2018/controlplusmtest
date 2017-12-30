@@ -2,16 +2,36 @@ package com.asetecit.controlplusmtest.core;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "existencia")
 public class Existencia implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private int codigo;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "id")
+	private int id;
+
+	@OneToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "ProductoId")
 	private Producto producto;
+
+	@Column(name = "unidades")
 	private int unidades;
 
-	public int getCodigo() {
-		return codigo;
+	public int getId() {
+		return id;
 	}
 
 	public Producto getProducto() {
