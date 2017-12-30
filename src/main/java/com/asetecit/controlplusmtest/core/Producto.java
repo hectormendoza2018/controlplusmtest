@@ -73,8 +73,8 @@ public class Producto implements Serializable {
 		}
 
 		public Build withNombre(String nombre) {
-			if ((cup == null) || cup.trim().isEmpty()) {
-				throw new RuntimeException("no ha ingresado un valor correcto para el cup");
+			if ((nombre == null) || nombre.trim().isEmpty()) {
+				throw new RuntimeException("no ha ingresado un valor correcto para el nombre");
 			}
 			this.nombre = nombre;
 			return this;
