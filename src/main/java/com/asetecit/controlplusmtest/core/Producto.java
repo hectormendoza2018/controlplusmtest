@@ -37,6 +37,9 @@ public class Producto implements Serializable {
 	@Column(name = "precio")
 	private BigDecimal precio;
 
+	public Producto() {
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -59,6 +62,7 @@ public class Producto implements Serializable {
 
 	public static class Build {
 
+		private int id;
 		private String cup = "";
 		private String nombre = "";
 		private Categoria categoria;
@@ -94,6 +98,16 @@ public class Producto implements Serializable {
 				throw new RuntimeException("el precio ingresado no es válido");
 			}
 			this.precio = precio;
+			return this;
+		}
+
+		public Build from(Producto producto) {
+			id = producto.getId();
+			cup = producto.cup;
+			nombre = producto.nombre;
+			categoria = producto.categoria;
+			precio = producto.precio;
+
 			return this;
 		}
 
