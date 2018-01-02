@@ -26,7 +26,6 @@ public class ProductoRegistro implements ProductoRepository {
 
 	@Override
 	public Producto buscar(String nombre) throws BusinessException {
-
 		Query query = em.createQuery("from Producto prod where prod.nombre = :nombre");
 		query.setParameter("nombre", nombre);
 		Producto producto = (Producto) query.getSingleResult();
@@ -43,15 +42,9 @@ public class ProductoRegistro implements ProductoRepository {
 
 	@Override
 	public Producto actualizar(Producto producto) {
-		Producto saved = em.find(Producto.class, producto.getId());
-
-		saved = new Producto.Build().from(saved).withCategoria(saved.getCategoria()).withCup(saved.getCup())
-				.withNombre(saved.getNombre()).withPrecio(saved.getPrecio()).build();
-
 		em.getTransaction().begin();
-		em.persist(saved);
+		em.merge(producto);
 		em.getTransaction().commit();
-
 		return producto;
 	}
 
