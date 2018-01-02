@@ -27,14 +27,13 @@ public class SucursalRegistro implements SucursalRepository {
 		em.getTransaction().begin();
 		em.persist(sucursal);
 		em.getTransaction().commit();
-		return null;
+		return sucursal;
 	}
 
 	@Override
 	public Sucursal actualizar(Sucursal sucursal) {
-		em.find(Sucursal.class, sucursal.getId());
 		em.getTransaction().begin();
-		sucursal.setNombre(sucursal.getNombre());
+		em.merge(sucursal);
 		em.getTransaction().commit();
 		return sucursal;
 	}
