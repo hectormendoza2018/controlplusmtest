@@ -57,6 +57,7 @@ public class Sucursal implements Serializable {
 
 	public static class Build {
 
+		private int id;
 		private String nombre = "";
 		private String direccion = "";
 		private String telefono = "";
@@ -85,12 +86,21 @@ public class Sucursal implements Serializable {
 			return this;
 		}
 
+		public Build from(Sucursal sucursal) {
+			id = sucursal.getId();
+			nombre = sucursal.nombre;
+			direccion = sucursal.direccion;
+			telefono = sucursal.telefono;
+			return this;
+		}
+
 		public Sucursal build() {
 			return new Sucursal(this);
 		}
 	}
 
 	private Sucursal(Build b) {
+		this.id = b.id;
 		this.nombre = b.nombre;
 		this.direccion = b.direccion;
 		this.telefono = b.telefono;
