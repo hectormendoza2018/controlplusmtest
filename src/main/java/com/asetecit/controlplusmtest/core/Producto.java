@@ -117,6 +117,7 @@ public class Producto implements Serializable {
 	}
 
 	private Producto(Build b) {
+		this.id = b.id;
 		this.cup = b.cup;
 		this.nombre = b.nombre;
 		this.categoria = b.categoria;
