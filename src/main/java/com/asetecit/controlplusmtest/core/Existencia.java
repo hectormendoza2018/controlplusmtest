@@ -30,6 +30,10 @@ public class Existencia implements Serializable {
 	@Column(name = "unidades")
 	private int unidades;
 
+	public Existencia() {
+
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -44,6 +48,7 @@ public class Existencia implements Serializable {
 
 	public static class Build {
 
+		private int id;
 		private Producto producto;
 		private int unidades;
 
@@ -60,12 +65,20 @@ public class Existencia implements Serializable {
 			return this;
 		}
 
+		public Build from(Existencia existencia) {
+			id = existencia.getId();
+			producto = existencia.producto;
+			unidades = existencia.unidades;
+			return this;
+		}
+
 		public Existencia build() {
 			return new Existencia(this);
 		}
 	}
 
 	public Existencia(Build b) {
+		this.id = b.id;
 		this.producto = b.producto;
 		this.unidades = b.unidades;
 	}
