@@ -17,10 +17,12 @@ public class ProductoRegistro implements ProductoRepository {
 		this.em = em;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Collection<Producto> listar() {
-		@SuppressWarnings("unchecked")
-		List<Producto> productos = (List<Producto>) em.createQuery("FROM Producto").getResultList();
+	public Collection<Producto> listar(Boolean activo) {
+		Query query = em.createQuery("FROM Producto prod where prod.activo = :activo");
+		query.setParameter("activo", activo);
+		List<Producto> productos = (List<Producto>) query.getResultList();
 		return productos;
 	}
 
