@@ -7,7 +7,7 @@ import com.asetecit.controlplusmtest.core.Producto;
 
 public interface ProductoRepository {
 
-	Collection<Producto> listar();
+	Collection<Producto> listar(Boolean activo);
 
 	Producto buscar(String nombre) throws BusinessException;
 
