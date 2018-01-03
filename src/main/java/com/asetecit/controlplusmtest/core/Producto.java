@@ -37,6 +37,9 @@ public class Producto implements Serializable {
 	@Column(name = "precio")
 	private BigDecimal precio;
 
+	@Column(name = "activo")
+	private boolean activo;
+
 	public Producto() {
 	}
 
@@ -60,6 +63,10 @@ public class Producto implements Serializable {
 		return precio;
 	}
 
+	public boolean getActivo() {
+		return activo;
+	}
+
 	public static class Build {
 
 		private int id;
@@ -67,6 +74,7 @@ public class Producto implements Serializable {
 		private String nombre = "";
 		private Categoria categoria;
 		private BigDecimal precio;
+		private Boolean activo;
 
 		public Build withCup(String cup) {
 			if ((cup == null) || cup.trim().isEmpty()) {
@@ -101,13 +109,18 @@ public class Producto implements Serializable {
 			return this;
 		}
 
+		public Build withActivo(Boolean activo) {
+			this.activo = activo;
+			return this;
+		}
+
 		public Build from(Producto producto) {
 			id = producto.getId();
 			cup = producto.cup;
 			nombre = producto.nombre;
 			categoria = producto.categoria;
 			precio = producto.precio;
-
+			activo = producto.activo;
 			return this;
 		}
 
@@ -122,6 +135,6 @@ public class Producto implements Serializable {
 		this.nombre = b.nombre;
 		this.categoria = b.categoria;
 		this.precio = b.precio;
+		this.activo = b.activo;
 	}
-
 }
