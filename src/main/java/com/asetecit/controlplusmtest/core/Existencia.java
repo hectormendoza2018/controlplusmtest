@@ -2,7 +2,6 @@ package com.asetecit.controlplusmtest.core;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,8 +22,8 @@ public class Existencia implements Serializable {
 	@Column(name = "id")
 	private int id;
 
-	@OneToOne(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "ProductoId")
+	@OneToOne
+	@JoinColumn(unique = true)
 	private Producto producto;
 
 	@Column(name = "unidades")
