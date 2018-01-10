@@ -3,6 +3,9 @@ package com.asetecit.controlplusmtest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Import;
+
+import com.asetecit.controlplusmtest.config.AppConfig;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 @SpringBootApplication
+@Import(AppConfig.class)
 public class App extends Application {
 
 	private ConfigurableApplicationContext ctx;

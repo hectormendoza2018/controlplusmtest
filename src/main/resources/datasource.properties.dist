@@ -1,0 +1,4 @@
+datasource.url=url
+datasource.username=sa
+datasource.password=
+datasource.driverClassName=driver
