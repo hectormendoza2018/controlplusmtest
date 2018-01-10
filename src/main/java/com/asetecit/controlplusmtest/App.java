@@ -1,7 +1,8 @@
 package com.asetecit.controlplusmtest;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+@SpringBootApplication
 public class App extends Application {
 
 	private ConfigurableApplicationContext ctx;
@@ -16,7 +18,7 @@ public class App extends Application {
 
 	@Override
 	public void init() throws Exception {
-		ctx = new AnnotationConfigApplicationContext("com.asetecit.controlplusmtest");
+		ctx = SpringApplication.run(App.class);
 
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/root.fxml"));
 		fxmlLoader.setControllerFactory(ctx::getBean);
