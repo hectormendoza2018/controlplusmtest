@@ -27,8 +27,9 @@ public class ProductoRegistro implements ProductoRepository {
 
 	@Override
 	public Producto buscar(String nombre) throws BusinessException {
-
-		return repository.findByNombre(nombre);
+		Producto producto = repository.findByNombre(nombre);
+		checkIfNull(producto, "No existe un producto con ese nombre");
+		return producto;
 	}
 
 	@Override
@@ -37,8 +38,16 @@ public class ProductoRegistro implements ProductoRepository {
 	}
 
 	@Override
-	public Producto buscarPorCup(String nombre) throws BusinessException {
-		return repository.findByCup(nombre);
+	public Producto buscarPorCup(String cup) throws BusinessException {
+		Producto producto = repository.findByCup(cup);
+		checkIfNull(producto, "No existe un producto con ese nombre de cup");
+		return producto;
+	}
+
+	private void checkIfNull(Producto producto, String msg) {
+		if (producto == null) {
+			throw new BusinessException(msg);
+		}
 	}
 
 	@Override
