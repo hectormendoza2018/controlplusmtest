@@ -1,44 +1,41 @@
 package com.asetecit.controlplusmtest.repository;
 
 import java.util.Collection;
-import java.util.List;
 
-import javax.persistence.EntityManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import com.asetecit.controlplusmtest.core.BusinessException;
 import com.asetecit.controlplusmtest.core.Categoria;
+import com.google.common.collect.Lists;
 
+@Repository
 public class CategoriaRegistro implements CategoriaRepository {
 
-	private EntityManager em;
+	CategoriaJpaRepository repository;
 
-	public CategoriaRegistro(EntityManager em) {
-		this.em = em;
+	@Autowired
+	public CategoriaRegistro(CategoriaJpaRepository repository) {
+		this.repository = repository;
 	}
 
 	@Override
 	public Collection<Categoria> listar() {
-		@SuppressWarnings("unchecked")
-		List<Categoria> categorias = (List<Categoria>) em.createQuery("FROM Categoria").getResultList();
-		return categorias;
+		return Lists.newArrayList(repository.findAll());
 	}
 
 	@Override
 	public Categoria agregar(Categoria cat) {
-		em.getTransaction().begin();
-		em.persist(cat);
-		em.getTransaction().commit();
-		return cat;
+		if (null == cat) {
+			throw new BusinessException("La categoria no es valida.");
+		}
+		return repository.save(cat);
 	}
 
 	@Override
 	public Categoria actualizar(Categoria cat) {
 
-		em.find(Categoria.class, cat.getId());
-		em.getTransaction().begin();
-		cat.setNombre(cat.getNombre());
-		em.getTransaction().commit();
-
-		return cat;
+		return agregar(cat);
 	}
 
 }
