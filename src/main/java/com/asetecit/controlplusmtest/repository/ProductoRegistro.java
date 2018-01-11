@@ -1,97 +1,61 @@
 package com.asetecit.controlplusmtest.repository;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.asetecit.controlplusmtest.core.BusinessException;
 import com.asetecit.controlplusmtest.core.Producto;
+import com.google.common.collect.Lists;
 
+@Repository
 public class ProductoRegistro implements ProductoRepository {
 
-	private EntityManager em;
+	ProductoJpaRepository repository;
 
-	public ProductoRegistro(EntityManager em) {
-		this.em = em;
+	@Autowired
+	public ProductoRegistro(ProductoJpaRepository repository) {
+		this.repository = repository;
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public Collection<Producto> listar(Boolean activo) {
-
-		Query query = em.createQuery("FROM Producto prod where prod.activo = :activo");
-		query.setParameter("activo", activo);
-		List<Producto> productos = new ArrayList<>(query.getResultList());
-
-		return productos;
+		return Lists.newArrayList(repository.findAll());
 	}
 
 	@Override
 	public Producto buscar(String nombre) throws BusinessException {
-		Query query = em.createQuery("from Producto prod where prod.nombre = :nombre");
-		query.setParameter("nombre", nombre);
-		Producto producto;
-		try {
-			producto = (Producto) query.getSingleResult();
-		} catch (Exception ex) {
-			producto = null;
-		}
-		return producto;
+
+		return repository.findByNombre(nombre);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Producto> buscarPorCategoria(int codigo) throws BusinessException {
-		Query query = em
-				.createQuery("FROM Producto prod where prod.categoria.id = :categoria AND prod.activo = :activo");
-		query.setParameter("categoria", codigo);
-		query.setParameter("activo", true);
-		List<Producto> productos = (List<Producto>) query.getResultList();
-		return productos;
+		return repository.findByCategoriaId(codigo);
 	}
 
 	@Override
 	public Producto buscarPorCup(String nombre) throws BusinessException {
-		Query query = em.createQuery("FROM Producto prod where prod.cup = :cup AND prod.activo = :activo");
-		query.setParameter("cup", nombre);
-		query.setParameter("activo", true);
-		Producto producto;
-		try {
-			producto = (Producto) query.getSingleResult();
-		} catch (Exception ex) {
-			producto = null;
-		}
-
-		return producto;
+		return repository.findByCup(nombre);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Producto> buscarPorPrecio(BigDecimal precio) throws BusinessException {
-		Query query = em.createQuery("FROM Producto prod where prod.precio = :precio AND prod.activo = :activo");
-		query.setParameter("precio", precio);
-		query.setParameter("activo", true);
-		List<Producto> productos = (List<Producto>) query.getResultList();
-		return productos;
+		return repository.findByPrecio(precio);
 	}
 
 	@Override
 	public Producto agregar(Producto producto) {
-		em.getTransaction().begin();
-		em.persist(producto);
-		em.getTransaction().commit();
-		return producto;
+		if (null == producto) {
+			throw new BusinessException("El Producto no es válido.");
+		}
+		return repository.save(producto);
 	}
 
 	@Override
 	public Producto actualizar(Producto producto) {
-		em.getTransaction().begin();
-		em.merge(producto);
-		em.getTransaction().commit();
-		return producto;
+		return agregar(producto);
 	}
 }
