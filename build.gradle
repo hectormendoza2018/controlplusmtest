@@ -31,5 +31,6 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	
-	compile 'com.microsoft.sqlserver:mssql-jdbc:6.2.2.jre8'
+    compile 'com.microsoft.sqlserver:mssql-jdbc:6.2.2.jre8'
+	compile('org.flywaydb:flyway-core')
 } 
