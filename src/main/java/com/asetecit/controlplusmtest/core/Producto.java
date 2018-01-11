@@ -3,7 +3,6 @@ package com.asetecit.controlplusmtest.core;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,8 +29,8 @@ public class Producto implements Serializable {
 	@Column(name = "nombre")
 	private String nombre;
 
-	@OneToOne(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "CategoriaId")
+	@OneToOne
+	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 
 	@Column(name = "precio")
@@ -94,7 +93,7 @@ public class Producto implements Serializable {
 
 		public Build withCategoria(Categoria categoria) {
 			if (categoria == null) {
-				throw new RuntimeException("La categorÌa no es v·lida.");
+				throw new RuntimeException("La categor√≠a no es v√°lida.");
 			}
 			this.categoria = categoria;
 			return this;
@@ -103,7 +102,7 @@ public class Producto implements Serializable {
 		public Build withPrecio(BigDecimal precio) {
 
 			if ((precio == null) || (precio.signum() == 0)) {
-				throw new RuntimeException("el precio ingresado no es v·lido");
+				throw new RuntimeException("el precio ingresado no es v√°lido");
 			}
 			this.precio = precio;
 			return this;
