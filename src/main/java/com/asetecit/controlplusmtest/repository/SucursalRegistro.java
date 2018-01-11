@@ -1,41 +1,40 @@
 package com.asetecit.controlplusmtest.repository;
 
 import java.util.Collection;
-import java.util.List;
 
-import javax.persistence.EntityManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import com.asetecit.controlplusmtest.core.BusinessException;
 import com.asetecit.controlplusmtest.core.Sucursal;
+import com.google.common.collect.Lists;
 
+@Repository
 public class SucursalRegistro implements SucursalRepository {
 
-	private EntityManager em;
+	SucursalJpaRepository repository;
 
-	public SucursalRegistro(EntityManager em) {
-		this.em = em;
+	@Autowired
+	public SucursalRegistro(SucursalJpaRepository repository) {
+		this.repository = repository;
 	}
 
 	@Override
 	public Collection<Sucursal> listar() {
-		@SuppressWarnings("unchecked")
-		List<Sucursal> sucursales = (List<Sucursal>) em.createQuery("FROM Sucursal").getResultList();
-		return sucursales;
+		return Lists.newArrayList(repository.findAll());
 	}
 
 	@Override
 	public Sucursal agregar(Sucursal sucursal) {
-		em.getTransaction().begin();
-		em.persist(sucursal);
-		em.getTransaction().commit();
-		return sucursal;
+		if (null == sucursal) {
+			throw new BusinessException("La sucursal no es válida.");
+		}
+		return repository.save(sucursal);
 	}
 
 	@Override
 	public Sucursal actualizar(Sucursal sucursal) {
-		em.getTransaction().begin();
-		em.merge(sucursal);
-		em.getTransaction().commit();
-		return sucursal;
+		return agregar(sucursal);
 	}
 
 }
