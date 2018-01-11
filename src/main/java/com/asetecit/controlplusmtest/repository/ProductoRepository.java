@@ -12,11 +12,11 @@ public interface ProductoRepository {
 
 	Producto buscar(String nombre) throws BusinessException;
 
-	Collection<Producto> buscarPorCategoria(int codigo) throws BusinessException;
+	Collection<Producto> buscarPorCategoria(int codigo);
 
 	Producto buscarPorCup(String nombre) throws BusinessException;
 
-	Collection<Producto> buscarPorPrecio(BigDecimal precio) throws BusinessException;
+	Collection<Producto> buscarPorPrecio(BigDecimal precio);
 
 	Producto agregar(Producto producto);
 

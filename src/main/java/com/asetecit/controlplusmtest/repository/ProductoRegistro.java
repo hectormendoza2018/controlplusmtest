@@ -33,7 +33,7 @@ public class ProductoRegistro implements ProductoRepository {
 	}
 
 	@Override
-	public Collection<Producto> buscarPorCategoria(int codigo) throws BusinessException {
+	public Collection<Producto> buscarPorCategoria(int codigo) {
 		return repository.findByCategoriaId(codigo);
 	}
 
@@ -51,7 +51,7 @@ public class ProductoRegistro implements ProductoRepository {
 	}
 
 	@Override
-	public Collection<Producto> buscarPorPrecio(BigDecimal precio) throws BusinessException {
+	public Collection<Producto> buscarPorPrecio(BigDecimal precio) {
 		return repository.findByPrecio(precio);
 	}
 
