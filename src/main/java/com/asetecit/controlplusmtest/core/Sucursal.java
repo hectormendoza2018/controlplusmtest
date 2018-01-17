@@ -42,7 +42,7 @@ public class Sucursal implements Serializable {
 
 	public void setNombre(String nombre) {
 		if ((nombre == null) || nombre.trim().isEmpty()) {
-			throw new RuntimeException("El nombre no es v·lido.");
+			throw new RuntimeException("El nombre no es v√°lido.");
 		}
 		this.nombre = nombre;
 	}
@@ -64,7 +64,7 @@ public class Sucursal implements Serializable {
 
 		public Build withNombre(String nombre) {
 			if ((nombre == null) || nombre.trim().isEmpty()) {
-				throw new RuntimeException("El nombre no es v·lido.");
+				throw new RuntimeException("El nombre no es v√°lido.");
 			}
 			this.nombre = nombre;
 			return this;
@@ -72,7 +72,7 @@ public class Sucursal implements Serializable {
 
 		public Build withDireccion(String direccion) {
 			if ((direccion == null) || direccion.trim().isEmpty()) {
-				throw new RuntimeException("La direcciÛn no es v·lida.");
+				throw new RuntimeException("La direcci√≥n no es v√°lida.");
 			}
 			this.direccion = direccion;
 			return this;
@@ -80,7 +80,7 @@ public class Sucursal implements Serializable {
 
 		public Build withTelefono(String telefono) {
 			if ((telefono == null) || telefono.trim().isEmpty()) {
-				throw new RuntimeException("El n˙mero de telÈfono no es v·lido.");
+				throw new RuntimeException("El n√∫mero de tel√©fono no es v√°lido.");
 			}
 			this.telefono = telefono;
 			return this;
