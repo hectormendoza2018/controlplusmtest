@@ -136,4 +136,11 @@ public class Producto implements Serializable {
 		this.precio = b.precio;
 		this.activo = b.activo;
 	}
+
+	@Override
+	public String toString() {
+		return "Producto [id=" + id + ", cup=" + cup + ", nombre=" + nombre + ", categoria=" + categoria + ", precio="
+				+ precio + ", activo=" + activo + "]";
+	}
+
 }
