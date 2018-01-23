@@ -2,9 +2,11 @@ package com.asetecit.controlplusmtest.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.asetecit.controlplusmtest.core.Producto;
@@ -34,6 +36,13 @@ public class ProductoController {
 
 		log.debug("Updating producto {}", product);
 		return repository.actualizar(product);
+	}
+
+	@GetMapping("/search")
+	public Producto search(@RequestParam(defaultValue = "") String query) {
+
+		log.debug("Finding producto with nombre {}", query);
+		return repository.buscar(query);
 	}
 
 }
