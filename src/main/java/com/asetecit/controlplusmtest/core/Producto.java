@@ -39,7 +39,7 @@ public class Producto implements Serializable {
 	@Column(name = "activo")
 	private boolean activo;
 
-	public Producto() {
+	private Producto() {
 	}
 
 	public int getId() {
