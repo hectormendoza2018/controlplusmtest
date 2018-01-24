@@ -8,4 +8,6 @@ public interface SearchService {
 
 	Collection<Producto> searchProduct(String query, String type);
 
+	Collection<Producto> searchProduct(boolean active);
+
 }

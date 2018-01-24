@@ -56,4 +56,10 @@ public class Finder implements SearchService {
 		return products;
 	}
 
+	@Override
+	public Collection<Producto> searchProduct(boolean active) {
+
+		return repository.listar(active);
+	}
+
 }

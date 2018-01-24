@@ -52,4 +52,10 @@ public class ProductoController {
 		return finder.searchProduct(query, type);
 	}
 
+	@GetMapping("/list")
+	public Collection<Producto> search(@RequestParam(required = false) boolean active) {
+
+		return finder.searchProduct(active);
+	}
+
 }
