@@ -17,4 +17,6 @@ public interface ProductoJpaRepository extends PagingAndSortingRepository<Produc
 
 	Collection<Producto> findByPrecio(BigDecimal precio);
 
+	Collection<Producto> findByActivo(boolean active);
+
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.asetecit.controlplusmtest.core.BusinessException;
 import com.asetecit.controlplusmtest.core.Producto;
-import com.google.common.collect.Lists;
 
 @Repository
 public class ProductoRegistro implements ProductoRepository {
@@ -21,8 +20,9 @@ public class ProductoRegistro implements ProductoRepository {
 	}
 
 	@Override
-	public Collection<Producto> listar(Boolean activo) {
-		return Lists.newArrayList(repository.findAll());
+	public Collection<Producto> listar(Boolean active) {
+
+		return repository.findByActivo(active);
 	}
 
 	@Override
