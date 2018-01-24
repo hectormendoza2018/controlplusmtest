@@ -30,8 +30,7 @@ public class Existencia implements Serializable {
 	@Column(name = "unidades")
 	private int unidades;
 
-	public Existencia() {
-
+	protected Existencia() {
 	}
 
 	public int getId() {
