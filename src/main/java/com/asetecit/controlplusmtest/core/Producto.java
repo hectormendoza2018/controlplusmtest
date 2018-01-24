@@ -75,6 +75,11 @@ public class Producto implements Serializable {
 		private BigDecimal precio;
 		private Boolean activo;
 
+		public Build withId(int id) {
+			this.id = id;
+			return this;
+		}
+
 		public Build withCup(String cup) {
 			if ((cup == null) || cup.trim().isEmpty()) {
 				throw new RuntimeException("no ha ingresado un valor correcto para el cup");

@@ -51,6 +51,11 @@ public class Existencia implements Serializable {
 		private Producto producto;
 		private int unidades;
 
+		public Build withId(int id) {
+			this.id = id;
+			return this;
+		}
+
 		public Build withProducto(Producto producto) {
 			if (producto == null) {
 				throw new RuntimeException("El producto no es valido.");
