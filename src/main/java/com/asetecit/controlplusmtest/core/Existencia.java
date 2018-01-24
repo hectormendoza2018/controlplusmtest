@@ -82,4 +82,9 @@ public class Existencia implements Serializable {
 		this.unidades = b.unidades;
 	}
 
+	@Override
+	public String toString() {
+		return "Existencia [id=" + id + ", producto=" + producto + ", unidades=" + unidades + "]";
+	}
+
 }
