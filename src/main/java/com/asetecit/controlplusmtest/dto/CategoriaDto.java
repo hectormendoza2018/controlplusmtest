@@ -1,11 +1,15 @@
 package com.asetecit.controlplusmtest.dto;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.asetecit.controlplusmtest.core.Categoria;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CategoriaDto {
 
 	public int id;
+
+	@NotEmpty(message = "El nombre no debe estar vacio")
 	public String nombre = "";
 
 	public CategoriaDto() {

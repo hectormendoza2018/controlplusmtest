@@ -1,12 +1,17 @@
 package com.asetecit.controlplusmtest.dto;
 
+import javax.validation.Valid;
+
 import com.asetecit.controlplusmtest.core.Existencia;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class ExistenciaDto {
 
 	public int id;
+
+	@Valid
 	public ProductoDto producto;
+
 	public int unidades;
 
 	public ExistenciaDto() {

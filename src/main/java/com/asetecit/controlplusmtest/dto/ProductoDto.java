@@ -2,16 +2,29 @@ package com.asetecit.controlplusmtest.dto;
 
 import java.math.BigDecimal;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+
 import com.asetecit.controlplusmtest.core.Producto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class ProductoDto {
 
 	public int id;
+
+	@NotEmpty(message = "El cup no debe estar vacio")
 	public String cup = "";
+
+	@NotEmpty(message = "El nombre no debe estar vacio")
 	public String nombre = "";
+
+	@Min(value = 0, message = "El precio no es válido")
 	public BigDecimal precio;
+
 	public boolean activo;
+
+	@Valid
 	public CategoriaDto categoria;
 
 	public ProductoDto() {
