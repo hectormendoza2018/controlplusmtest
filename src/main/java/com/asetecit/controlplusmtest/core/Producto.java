@@ -66,7 +66,7 @@ public class Producto implements Serializable {
 		return activo;
 	}
 
-	public static class Build {
+	public static class Builder {
 
 		private int id;
 		private String cup = "";
@@ -75,12 +75,12 @@ public class Producto implements Serializable {
 		private BigDecimal precio;
 		private boolean activo;
 
-		public Build withId(int id) {
+		public Builder withId(int id) {
 			this.id = id;
 			return this;
 		}
 
-		public Build withCup(String cup) {
+		public Builder withCup(String cup) {
 			if ((cup == null) || cup.trim().isEmpty()) {
 				throw new RuntimeException("no ha ingresado un valor correcto para el cup");
 			}
@@ -88,7 +88,7 @@ public class Producto implements Serializable {
 			return this;
 		}
 
-		public Build withNombre(String nombre) {
+		public Builder withNombre(String nombre) {
 			if ((nombre == null) || nombre.trim().isEmpty()) {
 				throw new RuntimeException("no ha ingresado un valor correcto para el nombre");
 			}
@@ -96,7 +96,7 @@ public class Producto implements Serializable {
 			return this;
 		}
 
-		public Build withCategoria(Categoria categoria) {
+		public Builder withCategoria(Categoria categoria) {
 			if (categoria == null) {
 				throw new RuntimeException("La categoría no es válida.");
 			}
@@ -104,7 +104,7 @@ public class Producto implements Serializable {
 			return this;
 		}
 
-		public Build withPrecio(BigDecimal precio) {
+		public Builder withPrecio(BigDecimal precio) {
 
 			if ((precio == null) || (precio.signum() == 0)) {
 				throw new RuntimeException("el precio ingresado no es válido");
@@ -113,12 +113,12 @@ public class Producto implements Serializable {
 			return this;
 		}
 
-		public Build withActivo(Boolean activo) {
+		public Builder withActivo(Boolean activo) {
 			this.activo = activo;
 			return this;
 		}
 
-		public Build from(Producto producto) {
+		public Builder from(Producto producto) {
 			id = producto.getId();
 			cup = producto.cup;
 			nombre = producto.nombre;
@@ -133,7 +133,7 @@ public class Producto implements Serializable {
 		}
 	}
 
-	private Producto(Build b) {
+	private Producto(Builder b) {
 		this.id = b.id;
 		this.cup = b.cup;
 		this.nombre = b.nombre;

@@ -43,7 +43,7 @@ public class ProductoDto {
 
 	@JsonIgnore
 	public Producto toEntity() {
-		return new Producto.Build().withId(id).withCup(cup).withNombre(nombre).withPrecio(precio).withActivo(activo)
+		return new Producto.Builder().withId(id).withCup(cup).withNombre(nombre).withPrecio(precio).withActivo(activo)
 				.withCategoria(categoria.toEntity()).build();
 	}
 

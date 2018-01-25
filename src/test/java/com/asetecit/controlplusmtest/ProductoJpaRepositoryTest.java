@@ -51,7 +51,7 @@ public class ProductoJpaRepositoryTest {
 	public void whenFindByName_thenReturnEmployee() {
 
 		// given
-		Producto producto = new Producto.Build().withNombre("Bayer").withActivo(true).withCategoria(cat).withCup("1234")
+		Producto producto = new Producto.Builder().withNombre("Bayer").withActivo(true).withCategoria(cat).withCup("1234")
 				.withPrecio(new BigDecimal(10)).build();
 		entityManager.persist(producto);
 		// entityManager.flush();
@@ -68,7 +68,7 @@ public class ProductoJpaRepositoryTest {
 
 		// given
 
-		Producto producto = new Producto.Build().withNombre("Bayer").withActivo(true).withCategoria(cat).withCup("1234")
+		Producto producto = new Producto.Builder().withNombre("Bayer").withActivo(true).withCategoria(cat).withCup("1234")
 				.withPrecio(new BigDecimal(10)).build();
 		entityManager.persist(producto);
 		// entityManager.flush();
@@ -86,7 +86,7 @@ public class ProductoJpaRepositoryTest {
 	public void whenSave_thenReturnIdentity() {
 
 		// given
-		Producto producto = new Producto.Build().withNombre("Mazola").withActivo(true).withCategoria(cat)
+		Producto producto = new Producto.Builder().withNombre("Mazola").withActivo(true).withCategoria(cat)
 				.withCup("1234").withPrecio(new BigDecimal(10)).build();
 		entityManager.persist(producto);
 		// entityManager.flush();

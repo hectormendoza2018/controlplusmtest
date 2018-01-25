@@ -55,14 +55,14 @@ public class Sucursal implements Serializable {
 		return telefono;
 	}
 
-	public static class Build {
+	public static class Builder {
 
 		private int id;
 		private String nombre = "";
 		private String direccion = "";
 		private String telefono = "";
 
-		public Build withNombre(String nombre) {
+		public Builder withNombre(String nombre) {
 			if ((nombre == null) || nombre.trim().isEmpty()) {
 				throw new RuntimeException("El nombre no es válido.");
 			}
@@ -70,7 +70,7 @@ public class Sucursal implements Serializable {
 			return this;
 		}
 
-		public Build withDireccion(String direccion) {
+		public Builder withDireccion(String direccion) {
 			if ((direccion == null) || direccion.trim().isEmpty()) {
 				throw new RuntimeException("La dirección no es válida.");
 			}
@@ -78,7 +78,7 @@ public class Sucursal implements Serializable {
 			return this;
 		}
 
-		public Build withTelefono(String telefono) {
+		public Builder withTelefono(String telefono) {
 			if ((telefono == null) || telefono.trim().isEmpty()) {
 				throw new RuntimeException("El número de teléfono no es válido.");
 			}
@@ -86,7 +86,7 @@ public class Sucursal implements Serializable {
 			return this;
 		}
 
-		public Build from(Sucursal sucursal) {
+		public Builder from(Sucursal sucursal) {
 			id = sucursal.getId();
 			nombre = sucursal.nombre;
 			direccion = sucursal.direccion;
@@ -99,7 +99,7 @@ public class Sucursal implements Serializable {
 		}
 	}
 
-	private Sucursal(Build b) {
+	private Sucursal(Builder b) {
 		this.id = b.id;
 		this.nombre = b.nombre;
 		this.direccion = b.direccion;

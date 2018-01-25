@@ -7,67 +7,67 @@ public class SucursalTest {
 	@Test(expected = RuntimeException.class)
 	public void nombreIfNull() {
 
-		new Sucursal.Build().withNombre(null).build();
+		new Sucursal.Builder().withNombre(null).build();
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void nombreIfEmpty() {
 
-		new Sucursal.Build().withNombre("").build();
+		new Sucursal.Builder().withNombre("").build();
 
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void nombreIfOnlyWhiteSpace() {
 
-		new Sucursal.Build().withNombre("      ").build();
+		new Sucursal.Builder().withNombre("      ").build();
 
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void direccionIfNull() {
 
-		new Sucursal.Build().withDireccion(null).build();
+		new Sucursal.Builder().withDireccion(null).build();
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void direccionIfEmpty() {
 
-		new Sucursal.Build().withDireccion("").build();
+		new Sucursal.Builder().withDireccion("").build();
 
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void direccionIfOnlyWhiteSpace() {
 
-		new Sucursal.Build().withDireccion("      ").build();
+		new Sucursal.Builder().withDireccion("      ").build();
 
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void telefonoIfNull() {
 
-		new Sucursal.Build().withTelefono(null).build();
+		new Sucursal.Builder().withTelefono(null).build();
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void telefonoIfEmpty() {
 
-		new Sucursal.Build().withTelefono("").build();
+		new Sucursal.Builder().withTelefono("").build();
 
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void telefonoIfOnlyWhiteSpace() {
 
-		new Sucursal.Build().withTelefono("      ").build();
+		new Sucursal.Builder().withTelefono("      ").build();
 
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void setSucursalIfNull() {
 
-		Sucursal sut = new Sucursal.Build().build();
+		Sucursal sut = new Sucursal.Builder().build();
 		sut.setNombre(null);
 	}
 }

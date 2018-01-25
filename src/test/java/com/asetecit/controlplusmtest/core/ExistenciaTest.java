@@ -7,13 +7,13 @@ public class ExistenciaTest {
 
 	@Test(expected = RuntimeException.class)
 	public void productoIfNull() {
-		new Existencia.Build().withProducto(null).build();
+		new Existencia.Builder().withProducto(null).build();
 	}
 
 	@Test
 	public void unidadesNoNegative() {
 
-		Existencia sut = new Existencia.Build().withUnidades(-10).build();
+		Existencia sut = new Existencia.Builder().withUnidades(-10).build();
 
 		Assert.assertEquals(0, sut.getUnidades());
 	}

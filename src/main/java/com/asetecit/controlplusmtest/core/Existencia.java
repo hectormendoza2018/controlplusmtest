@@ -45,18 +45,18 @@ public class Existencia implements Serializable {
 		return unidades;
 	}
 
-	public static class Build {
+	public static class Builder {
 
 		private int id;
 		private Producto producto;
 		private int unidades;
 
-		public Build withId(int id) {
+		public Builder withId(int id) {
 			this.id = id;
 			return this;
 		}
 
-		public Build withProducto(Producto producto) {
+		public Builder withProducto(Producto producto) {
 			if (producto == null) {
 				throw new RuntimeException("El producto no es valido.");
 			}
@@ -64,12 +64,12 @@ public class Existencia implements Serializable {
 			return this;
 		}
 
-		public Build withUnidades(int unidades) {
+		public Builder withUnidades(int unidades) {
 			this.unidades = unidades < 0 ? 0 : unidades;
 			return this;
 		}
 
-		public Build from(Existencia existencia) {
+		public Builder from(Existencia existencia) {
 			id = existencia.getId();
 			producto = existencia.producto;
 			unidades = existencia.unidades;
@@ -81,7 +81,7 @@ public class Existencia implements Serializable {
 		}
 	}
 
-	public Existencia(Build b) {
+	public Existencia(Builder b) {
 		this.id = b.id;
 		this.producto = b.producto;
 		this.unidades = b.unidades;
