@@ -73,7 +73,7 @@ public class Producto implements Serializable {
 		private String nombre = "";
 		private Categoria categoria;
 		private BigDecimal precio;
-		private Boolean activo;
+		private boolean activo;
 
 		public Build withId(int id) {
 			this.id = id;
