@@ -75,6 +75,18 @@ public class Producto implements Serializable {
 		private BigDecimal precio;
 		private boolean activo;
 
+		public Builder() {
+		}
+
+		protected Builder(Producto producto) {
+			this.id = producto.id;
+			this.cup = producto.cup;
+			this.nombre = producto.nombre;
+			this.categoria = producto.categoria;
+			this.precio = producto.precio;
+			this.activo = producto.activo;
+		}
+
 		public Builder withId(int id) {
 			this.id = id;
 			return this;
@@ -118,19 +130,13 @@ public class Producto implements Serializable {
 			return this;
 		}
 
-		public Builder from(Producto producto) {
-			id = producto.getId();
-			cup = producto.cup;
-			nombre = producto.nombre;
-			categoria = producto.categoria;
-			precio = producto.precio;
-			activo = producto.activo;
-			return this;
-		}
-
 		public Producto build() {
 			return new Producto(this);
 		}
+	}
+
+	public Builder builder() {
+		return new Builder(this);
 	}
 
 	private Producto(Builder b) {
