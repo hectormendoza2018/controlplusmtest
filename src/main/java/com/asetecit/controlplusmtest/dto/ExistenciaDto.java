@@ -25,7 +25,7 @@ public class ExistenciaDto {
 
 	@JsonIgnore
 	public Existencia toEntity() {
-		return new Existencia.Builder().withId(id).withProducto(producto.toEntity()).withUnidades(unidades).build();
+		return new Existencia(id, producto.toEntity(), unidades);
 	}
 
 	public int getId() {
