@@ -1,73 +1,82 @@
 package com.asetecit.controlplusmtest.core;
 
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class SucursalTest {
 
-	@Test(expected = RuntimeException.class)
+	Sucursal sut;
+
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
+
+	@Before
+	public void before() {
+		sut = new Sucursal.Builder().withNombre("Central").withDireccion("Ciudad").withTelefono("77754923").build();
+	}
+
+	@Test
 	public void nombreIfNull() {
+		thrown.expectMessage("El nombre no es válido.");
 
-		new Sucursal.Builder().withNombre(null).build();
+		sut.builder().withNombre(null).build();
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void nombreIfEmpty() {
+		thrown.expectMessage("El nombre no es válido.");
 
-		new Sucursal.Builder().withNombre("").build();
-
+		sut.builder().withNombre("").build();
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void nombreIfOnlyWhiteSpace() {
+		thrown.expectMessage("El nombre no es válido.");
 
-		new Sucursal.Builder().withNombre("      ").build();
-
+		sut.builder().withNombre("      ").build();
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void direccionIfNull() {
+		thrown.expectMessage("La dirección no es válida.");
 
-		new Sucursal.Builder().withDireccion(null).build();
+		sut.builder().withDireccion(null).build();
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void direccionIfEmpty() {
+		thrown.expectMessage("La dirección no es válida.");
 
-		new Sucursal.Builder().withDireccion("").build();
-
+		sut.builder().withDireccion("").build();
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void direccionIfOnlyWhiteSpace() {
+		thrown.expectMessage("La dirección no es válida.");
 
-		new Sucursal.Builder().withDireccion("      ").build();
-
+		sut.builder().withDireccion("      ").build();
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void telefonoIfNull() {
+		thrown.expectMessage("El número de teléfono no es válido.");
 
-		new Sucursal.Builder().withTelefono(null).build();
+		sut.builder().withTelefono(null).build();
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void telefonoIfEmpty() {
+		thrown.expectMessage("El número de teléfono no es válido.");
 
-		new Sucursal.Builder().withTelefono("").build();
-
+		sut.builder().withTelefono("").build();
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void telefonoIfOnlyWhiteSpace() {
+		thrown.expectMessage("El número de teléfono no es válido.");
 
-		new Sucursal.Builder().withTelefono("      ").build();
-
-	}
-
-	@Test(expected = RuntimeException.class)
-	public void setSucursalIfNull() {
-
-		Sucursal sut = new Sucursal.Builder().build();
-		sut.setNombre(null);
+		sut.builder().withTelefono("      ").build();
 	}
 }

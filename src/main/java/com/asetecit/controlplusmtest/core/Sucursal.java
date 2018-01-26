@@ -40,13 +40,6 @@ public class Sucursal implements Serializable {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
-		if ((nombre == null) || nombre.trim().isEmpty()) {
-			throw new RuntimeException("El nombre no es válido.");
-		}
-		this.nombre = nombre;
-	}
-
 	public String getDireccion() {
 		return direccion;
 	}
@@ -73,25 +66,16 @@ public class Sucursal implements Serializable {
 		}
 
 		public Builder withNombre(String nombre) {
-			if ((nombre == null) || nombre.trim().isEmpty()) {
-				throw new RuntimeException("El nombre no es válido.");
-			}
 			this.nombre = nombre;
 			return this;
 		}
 
 		public Builder withDireccion(String direccion) {
-			if ((direccion == null) || direccion.trim().isEmpty()) {
-				throw new RuntimeException("La dirección no es válida.");
-			}
 			this.direccion = direccion;
 			return this;
 		}
 
 		public Builder withTelefono(String telefono) {
-			if ((telefono == null) || telefono.trim().isEmpty()) {
-				throw new RuntimeException("El número de teléfono no es válido.");
-			}
 			this.telefono = telefono;
 			return this;
 		}
@@ -107,9 +91,31 @@ public class Sucursal implements Serializable {
 
 	private Sucursal(Builder b) {
 		this.id = b.id;
-		this.nombre = b.nombre;
-		this.direccion = b.direccion;
-		this.telefono = b.telefono;
+		setNombre(b.nombre).setDireccion(b.direccion).setTelefono(b.telefono);
+	}
+
+	private Sucursal setNombre(String nombre) {
+		if ((nombre == null) || nombre.trim().isEmpty()) {
+			throw new RuntimeException("El nombre no es válido.");
+		}
+		this.nombre = nombre;
+		return this;
+	}
+
+	private Sucursal setDireccion(String direccion) {
+		if ((direccion == null) || direccion.trim().isEmpty()) {
+			throw new RuntimeException("La dirección no es válida.");
+		}
+		this.direccion = direccion;
+		return this;
+	}
+
+	private Sucursal setTelefono(String telefono) {
+		if ((telefono == null) || telefono.trim().isEmpty()) {
+			throw new RuntimeException("El número de teléfono no es válido.");
+		}
+		this.telefono = telefono;
+		return this;
 	}
 
 }
