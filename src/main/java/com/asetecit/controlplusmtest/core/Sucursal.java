@@ -96,14 +96,6 @@ public class Sucursal implements Serializable {
 			return this;
 		}
 
-		public Builder from(Sucursal sucursal) {
-			id = sucursal.getId();
-			nombre = sucursal.nombre;
-			direccion = sucursal.direccion;
-			telefono = sucursal.telefono;
-			return this;
-		}
-
 		public Sucursal build() {
 			return new Sucursal(this);
 		}
