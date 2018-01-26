@@ -62,6 +62,16 @@ public class Sucursal implements Serializable {
 		private String direccion = "";
 		private String telefono = "";
 
+		public Builder() {
+		}
+
+		protected Builder(Sucursal su) {
+			this.id = su.id;
+			this.nombre = su.nombre;
+			this.direccion = su.direccion;
+			this.telefono = su.telefono;
+		}
+
 		public Builder withNombre(String nombre) {
 			if ((nombre == null) || nombre.trim().isEmpty()) {
 				throw new RuntimeException("El nombre no es válido.");
@@ -97,6 +107,10 @@ public class Sucursal implements Serializable {
 		public Sucursal build() {
 			return new Sucursal(this);
 		}
+	}
+
+	public Builder builder() {
+		return new Builder(this);
 	}
 
 	private Sucursal(Builder b) {

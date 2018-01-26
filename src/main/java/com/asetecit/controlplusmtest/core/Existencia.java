@@ -51,6 +51,15 @@ public class Existencia implements Serializable {
 		private Producto producto;
 		private int unidades;
 
+		public Builder() {
+		}
+
+		protected Builder(Existencia exi) {
+			this.id = exi.id;
+			this.unidades = exi.unidades;
+			this.producto = exi.producto;
+		}
+
 		public Builder withId(int id) {
 			this.id = id;
 			return this;
@@ -69,16 +78,13 @@ public class Existencia implements Serializable {
 			return this;
 		}
 
-		public Builder from(Existencia existencia) {
-			id = existencia.getId();
-			producto = existencia.producto;
-			unidades = existencia.unidades;
-			return this;
-		}
-
 		public Existencia build() {
 			return new Existencia(this);
 		}
+	}
+
+	public Builder builder() {
+		return new Builder(this);
 	}
 
 	public Existencia(Builder b) {
