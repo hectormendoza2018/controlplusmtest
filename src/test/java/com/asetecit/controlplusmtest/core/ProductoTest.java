@@ -2,58 +2,80 @@ package com.asetecit.controlplusmtest.core;
 
 import java.math.BigDecimal;
 
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class ProductoTest {
 
-	@Test(expected = RuntimeException.class)
+	Producto sut;
+
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
+
+	@Before
+	public void before() {
+		sut = new Producto.Builder().withCup("A14").withNombre("Acetaminofen").withActivo(true)
+				.withPrecio(new BigDecimal(5)).withCategoria(new Categoria()).build();
+	}
+
+	@Test
 	public void cupIfNull() {
+		thrown.expectMessage("no ha ingresado un valor correcto para el cup");
 
-		new Producto.Builder().withCup(null);
+		sut.builder().withCup(null).build();
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void cupIfEmpty() {
+		thrown.expectMessage("no ha ingresado un valor correcto para el cup");
 
-		new Producto.Builder().withCup("").build();
+		sut.builder().withCup("").build();
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void cupIfOnlyWhiteSpace() {
+		thrown.expectMessage("no ha ingresado un valor correcto para el cup");
 
-		new Producto.Builder().withCup("           ").build();
+		sut.builder().withCup("           ").build();
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void nombreIfNull() {
+		thrown.expectMessage("no ha ingresado un valor correcto para el nombre");
 
-		new Producto.Builder().withNombre(null);
+		sut.builder().withNombre(null).build();
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void nombreIfEmpty() {
+		thrown.expectMessage("no ha ingresado un valor correcto para el nombre");
 
-		new Producto.Builder().withNombre("").build();
+		sut.builder().withNombre("").build();
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void nombreIfOnlyWhiteSpace() {
+		thrown.expectMessage("no ha ingresado un valor correcto para el nombre");
 
-		new Producto.Builder().withNombre("           ").build();
+		sut.builder().withNombre("           ").build();
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void categoriaIfNull() {
-		new Producto.Builder().withCategoria(null).build();
+		thrown.expectMessage("La categoría no es válida.");
+
+		sut.builder().withCategoria(null).build();
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void precioIfNull() {
 		new Producto.Builder().withPrecio(null).build();
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void precioNotZero() {
-		new Producto.Builder().withPrecio(new BigDecimal(0)).build();
+		sut.builder().withPrecio(new BigDecimal(0)).build();
 	}
 }

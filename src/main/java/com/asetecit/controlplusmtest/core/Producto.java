@@ -93,34 +93,21 @@ public class Producto implements Serializable {
 		}
 
 		public Builder withCup(String cup) {
-			if ((cup == null) || cup.trim().isEmpty()) {
-				throw new RuntimeException("no ha ingresado un valor correcto para el cup");
-			}
 			this.cup = cup;
 			return this;
 		}
 
 		public Builder withNombre(String nombre) {
-			if ((nombre == null) || nombre.trim().isEmpty()) {
-				throw new RuntimeException("no ha ingresado un valor correcto para el nombre");
-			}
 			this.nombre = nombre;
 			return this;
 		}
 
 		public Builder withCategoria(Categoria categoria) {
-			if (categoria == null) {
-				throw new RuntimeException("La categoría no es válida.");
-			}
 			this.categoria = categoria;
 			return this;
 		}
 
 		public Builder withPrecio(BigDecimal precio) {
-
-			if ((precio == null) || (precio.signum() == 0)) {
-				throw new RuntimeException("el precio ingresado no es válido");
-			}
 			this.precio = precio;
 			return this;
 		}
@@ -141,17 +128,47 @@ public class Producto implements Serializable {
 
 	private Producto(Builder b) {
 		this.id = b.id;
-		this.cup = b.cup;
-		this.nombre = b.nombre;
-		this.categoria = b.categoria;
-		this.precio = b.precio;
-		this.activo = b.activo;
+		setCup(b.cup).setNombre(b.nombre).setCategoria(b.categoria).setPrecio(b.precio).setActivo(b.activo);
 	}
 
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", cup=" + cup + ", nombre=" + nombre + ", categoria=" + categoria + ", precio="
 				+ precio + ", activo=" + activo + "]";
+	}
+
+	private Producto setCup(String cup) {
+		if ((cup == null) || cup.trim().isEmpty()) {
+			throw new RuntimeException("no ha ingresado un valor correcto para el cup");
+		}
+		this.cup = cup;
+		return this;
+	}
+
+	private Producto setNombre(String nombre) {
+		if ((nombre == null) || nombre.trim().isEmpty()) {
+			throw new RuntimeException("no ha ingresado un valor correcto para el nombre");
+		}
+		this.nombre = nombre;
+		return this;
+	}
+
+	private Producto setCategoria(Categoria categoria) {
+		if (categoria == null) {
+			throw new RuntimeException("La categoría no es válida.");
+		}
+		this.categoria = categoria;
+		return this;
+	}
+
+	private Producto setPrecio(BigDecimal precio) {
+		this.precio = precio;
+		return this;
+	}
+
+	private Producto setActivo(boolean activo) {
+		this.activo = activo;
+		return this;
 	}
 
 }
