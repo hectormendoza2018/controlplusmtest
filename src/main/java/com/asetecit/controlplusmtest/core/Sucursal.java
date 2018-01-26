@@ -29,7 +29,7 @@ public class Sucursal implements Serializable {
 	@Column(name = "telefono")
 	private String telefono;
 
-	private Sucursal() {
+	protected Sucursal() {
 	}
 
 	public int getId() {
