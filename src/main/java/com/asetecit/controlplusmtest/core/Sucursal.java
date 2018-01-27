@@ -30,6 +30,9 @@ public class Sucursal implements Serializable {
 	private String telefono;
 
 	protected Sucursal() {
+		nombre = "";
+		direccion = "";
+		telefono = "";
 	}
 
 	public int getId() {
@@ -55,7 +58,8 @@ public class Sucursal implements Serializable {
 		private String direccion = "";
 		private String telefono = "";
 
-		public Builder() {
+		public Builder(String nombre) {
+			withNombre(nombre);
 		}
 
 		protected Builder(Sucursal su) {
@@ -89,6 +93,12 @@ public class Sucursal implements Serializable {
 		return new Builder(this);
 	}
 
+	@Override
+	public String toString() {
+		return "Sucursal [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono
+				+ "]";
+	}
+
 	private Sucursal(Builder b) {
 		this.id = b.id;
 		setNombre(b.nombre).setDireccion(b.direccion).setTelefono(b.telefono);
@@ -103,7 +113,7 @@ public class Sucursal implements Serializable {
 	}
 
 	private Sucursal setDireccion(String direccion) {
-		if ((direccion == null) || direccion.trim().isEmpty()) {
+		if ((direccion == null)) {
 			throw new RuntimeException("La dirección no es válida.");
 		}
 		this.direccion = direccion;
@@ -111,7 +121,7 @@ public class Sucursal implements Serializable {
 	}
 
 	private Sucursal setTelefono(String telefono) {
-		if ((telefono == null) || telefono.trim().isEmpty()) {
+		if ((telefono == null)) {
 			throw new RuntimeException("El número de teléfono no es válido.");
 		}
 		this.telefono = telefono;

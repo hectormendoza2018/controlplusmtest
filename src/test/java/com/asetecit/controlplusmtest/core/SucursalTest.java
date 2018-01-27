@@ -14,7 +14,7 @@ public class SucursalTest {
 
 	@Before
 	public void before() {
-		sut = new Sucursal.Builder().withNombre("Central").withDireccion("Ciudad").withTelefono("77754923").build();
+		sut = new Sucursal.Builder("Central").build();
 	}
 
 	@Test
@@ -46,37 +46,9 @@ public class SucursalTest {
 	}
 
 	@Test
-	public void direccionIfEmpty() {
-		thrown.expectMessage("La dirección no es válida.");
-
-		sut.builder().withDireccion("").build();
-	}
-
-	@Test
-	public void direccionIfOnlyWhiteSpace() {
-		thrown.expectMessage("La dirección no es válida.");
-
-		sut.builder().withDireccion("      ").build();
-	}
-
-	@Test
 	public void telefonoIfNull() {
 		thrown.expectMessage("El número de teléfono no es válido.");
 
 		sut.builder().withTelefono(null).build();
-	}
-
-	@Test
-	public void telefonoIfEmpty() {
-		thrown.expectMessage("El número de teléfono no es válido.");
-
-		sut.builder().withTelefono("").build();
-	}
-
-	@Test
-	public void telefonoIfOnlyWhiteSpace() {
-		thrown.expectMessage("El número de teléfono no es válido.");
-
-		sut.builder().withTelefono("      ").build();
 	}
 }
