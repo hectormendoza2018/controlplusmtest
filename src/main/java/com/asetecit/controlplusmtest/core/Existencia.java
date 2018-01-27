@@ -9,11 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "existencia")
+@Table(name = "existencia", uniqueConstraints = { @UniqueConstraint(columnNames = { "producto_id", "sucursal_id" }) })
 public class Existencia implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -27,16 +29,19 @@ public class Existencia implements Serializable {
 	@JoinColumn(unique = true)
 	private Producto producto;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Sucursal sucursal;
+
 	@Column(name = "unidades")
 	private int unidades;
 
-	public Existencia(Producto producto, int unidades) {
-		this(0, producto, unidades);
+	public Existencia(Sucursal sucursal, Producto producto, int unidades) {
+		this(0, sucursal, producto, unidades);
 	}
 
-	public Existencia(int id, Producto producto, int unidades) {
+	public Existencia(int id, Sucursal sucursal, Producto producto, int unidades) {
 		this.id = id;
-		setProducto(producto).setUnidades(unidades);
+		setProducto(producto).setSucursal(sucursal).setUnidades(unidades);
 	}
 
 	protected Existencia() {
@@ -48,6 +53,10 @@ public class Existencia implements Serializable {
 
 	public Producto getProducto() {
 		return producto;
+	}
+
+	public Sucursal getSucursal() {
+		return sucursal;
 	}
 
 	public int getUnidades() {
@@ -65,6 +74,15 @@ public class Existencia implements Serializable {
 		}
 
 		this.producto = producto;
+		return this;
+	}
+
+	private Existencia setSucursal(Sucursal sucursal) {
+		if (sucursal == null) {
+			throw new RuntimeException("La sucursal no es válida.");
+		}
+
+		this.sucursal = sucursal;
 		return this;
 	}
 
