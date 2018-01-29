@@ -69,6 +69,11 @@ public class Sucursal implements Serializable {
 			this.telefono = su.telefono;
 		}
 
+		public Builder withId(int id) {
+			this.id = id;
+			return this;
+		}
+
 		public Builder withNombre(String nombre) {
 			this.nombre = nombre;
 			return this;
