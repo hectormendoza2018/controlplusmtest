@@ -1,6 +1,7 @@
 package com.asetecit.controlplusmtest.controller;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.asetecit.controlplusmtest.core.Existencia;
 import com.asetecit.controlplusmtest.dto.ExistenciaDto;
 import com.asetecit.controlplusmtest.repository.ExistenciaRepository;
 
@@ -31,9 +31,9 @@ public class ExistenciaController {
 	}
 
 	@GetMapping("/list")
-	public Collection<Existencia> list() {
+	public Collection<ExistenciaDto> list() {
 
-		return repository.listar();
+		return repository.listar().stream().map(item -> new ExistenciaDto(item)).collect(Collectors.toList());
 	}
 
 	@PostMapping("/add")
